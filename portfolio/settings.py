@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'portfoliodb',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'HOST': 'https://immense-falls-02774.herokuapp.com/db',
         'PORT': '5432',
     }
 }
