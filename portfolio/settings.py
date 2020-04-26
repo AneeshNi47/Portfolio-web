@@ -75,14 +75,14 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+#'https://immense-falls-02774.herokuapp.com/db'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'portfoliodb',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': 'https://immense-falls-02774.herokuapp.com/db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
     
