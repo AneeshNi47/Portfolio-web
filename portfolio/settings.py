@@ -26,7 +26,7 @@ SECRET_KEY = 'ip7i=a*y+b#_*x8=-u(9q2!83-r&)n7qsfb6b6r@z1z9v5u2zl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['immense-falls-02774.herokuapp.com']
+ALLOWED_HOSTS = ['aneesh-bharath.herokuapp.com']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['jobs/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
