@@ -140,7 +140,7 @@ AWS_ACCESS_KEY_ID = 'AKIA3MOTR3Q2YF2B6RHX'
 AWS_SECRET_ACCESS_KEY =  '8iXWmujQrP6e87E5DvmBHafkHyuC4KQ1nbt866i4'
 AWS_STORAGE_BUCKET_NAME = 'django-portfolioaneesh'
 
-AWS_S3_REGION_NAME = 'Asia Pacific (Mumbai) ap-south-1' #change to your region
+AWS_S3_REGION_NAME = 'ap-south-1' #change to your region
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 AWS_S3_FILE_OVERWRITE = False
