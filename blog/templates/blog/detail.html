@@ -26,6 +26,13 @@
     </aside><!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
-
+  <a href="https://twitter.com/intent/tweet" class="twitter-mention-button" data-show-count="false" 
+          data-size="large"
+          data-text="Check out this blog - {{ blog.title }}"
+          data-url="{% url 'home' %}"
+          data-hashtags="{{ blog.hashtags1 }},{{ blog.hashtags2 }},{{ blog.hashtags3 }}" 
+          data-via="Aneesh97B"
+          data-related="twitterapi,twitter">Tweet here!
+  </a>
 </main><!-- /.container -->
 {% endblock %}
