@@ -12,7 +12,7 @@ class Blog(models.Model):
      hashtags1 = models.CharField(max_length=200, default='')
      hashtags2 = models.CharField(max_length=200, default='')
      hashtags3 = models.CharField(max_length=200, default='')
-     #author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+     author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
      def __str__(self):
           return self.title
