@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Blog
+from .models import testTable
+
 
 def allblogs(request):
     blogs = Blog.objects
