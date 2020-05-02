@@ -5,6 +5,8 @@ from .models import testTable
 
 
 def allblogs(request):
+    x_forwarded_for = request.META.get('REMOTE_ADDR')
+    print(x_forwarded_for)
     blogs = Blog.objects
     items = testTable.objects
     last_blog = Blog.objects.all().last()
@@ -18,10 +20,9 @@ def allblogs(request):
         'x-rapidapi-key': "1fe53a3500msh648ee33bcb45224p1791e1jsne51a930b6e9e"
         }
     response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.json())
     weather = response.json()
     return render(request, 'blog/allblogs.html',{'blogs':blogs, 'last_blog':last_blog, 'items':items, 
-                    'weather':weather})
+                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':x_forwarded_for})
 
 def detail(request, blog_id):
     detailblog = get_object_or_404(Blog, pk=blog_id)
