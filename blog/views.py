@@ -9,7 +9,7 @@ def allblogs(request):
     blogs = Blog.objects
     items = testTable.objects
     last_blog = Blog.objects.all().last()
-    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/202.83.42.15"
+    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/{}".format(x_forwarded_for)
     querystring_ip = {"format":"json"}
     headers_ip = {
         'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
