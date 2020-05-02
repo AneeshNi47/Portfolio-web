@@ -26,6 +26,3 @@ class Blog(models.Model):
 class testTable(models.Model):
      title_test = models.ForeignKey('Blog',on_delete=models.CASCADE)
      text_about = models.CharField(max_length=200, default='')
-
-     def __str__(self):
-          return self.title_test
