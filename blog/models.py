@@ -8,7 +8,6 @@ class Blog(models.Model):
      pub_date = models.DateTimeField()
      body = models.TextField()
      image = models.ImageField(upload_to='image/')
-     topic_subject = models.ForeignKey('Subject', default=1, on_delete=models.CASCADE)
      hashtags1 = models.CharField(max_length=200, default='')
      hashtags2 = models.CharField(max_length=200, default='')
      hashtags3 = models.CharField(max_length=200, default='')
@@ -22,10 +21,3 @@ class Blog(models.Model):
      
      def pub_date_pretty(self):
           return self.pub_date.strftime('%b %e %Y')
-
-class Subject(models.Model):
-     stitle = models.CharField(max_length=200, default='null')
-     create_date = models.DateTimeField()
-
-     def __str__(self):
-          return self.stitle
