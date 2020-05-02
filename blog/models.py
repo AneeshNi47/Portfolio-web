@@ -8,7 +8,7 @@ class Blog(models.Model):
      pub_date = models.DateTimeField()
      body = models.TextField()
      image = models.ImageField(upload_to='image/')
-     #title = models.ForeignKey('Subject', default=1, on_delete=models.CASCADE)
+     title = models.ForeignKey('Subject', default=1, on_delete=models.CASCADE)
      hashtags1 = models.CharField(max_length=200, default='')
      hashtags2 = models.CharField(max_length=200, default='')
      hashtags3 = models.CharField(max_length=200, default='')
