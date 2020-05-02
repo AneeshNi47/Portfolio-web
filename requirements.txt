@@ -4,3 +4,4 @@ django-heroku
 Pillow
 django-storages
 boto3
+requests
