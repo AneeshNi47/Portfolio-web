@@ -3,13 +3,20 @@ import requests
 from .models import Blog
 from .models import testTable
 
-
 def allblogs(request):
     x_forwarded_for = request.META.get('REMOTE_ADDR')
     print(x_forwarded_for)
     blogs = Blog.objects
     items = testTable.objects
     last_blog = Blog.objects.all().last()
+    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/202.83.42.15"
+    querystring_ip = {"format":"json"}
+    headers_ip = {
+        'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
+        'x-rapidapi-key': "567ab5fe7bmsh396072837da1a2cp161316jsnb5774dba1784"
+        }
+    response_ip = requests.request("GET", url_ip, headers=headers_ip, params=querystring_ip)
+    response_ip = response_ip.json()
     url = "https://community-open-weather-map.p.rapidapi.com/weather"
     querystring = { "id":"2172797",
                     "units":"metric",
@@ -22,11 +29,8 @@ def allblogs(request):
     response = requests.request("GET", url, headers=headers, params=querystring)
     weather = response.json()
     return render(request, 'blog/allblogs.html',{'blogs':blogs, 'last_blog':last_blog, 'items':items, 
-                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':x_forwarded_for})
+                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':response_ip})
 
 def detail(request, blog_id):
     detailblog = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'blog/detail.html', {'blog' : detailblog})
-
-
-
