@@ -36,7 +36,7 @@
     {% for blog in blogs.all %}
       <div class="blog-post">
         <h2 class="blog-post-title">{{ blog.title}}</h2>
-        <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">Mark</a></p>
+        <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#"{{ blog.author }}</a></p>
         <p>
         {{ blog.summary }}
         <a href="{% url 'detail' blog.id %}">Continue Reading..</a>
