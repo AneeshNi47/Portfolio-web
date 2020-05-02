@@ -9,7 +9,10 @@ def allblogs(request):
     blogs = Blog.objects
     items = testTable.objects
     last_blog = Blog.objects.all().last()
-    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/{}".format(x_forwarded_for)
+    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/" + str(x_forwarded_for)
+    new_url = "https://ip-geo-location.p.rapidapi.com/ip/10.155.219.74"
+    if url_ip == new_url:
+        print("same ip")
     print(url_ip)
     querystring_ip = {"format":"json"}
     headers_ip = {
@@ -30,7 +33,7 @@ def allblogs(request):
     response = requests.request("GET", url, headers=headers, params=querystring)
     weather = response.json()
     return render(request, 'blog/allblogs.html',{'blogs':blogs, 'last_blog':last_blog, 'items':items, 
-                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':response_ip, 'ip_addres':x_forwarded_for})
+                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':response_ip, 'ip_addres':url_ip})
 
 def detail(request, blog_id):
     detailblog = get_object_or_404(Blog, pk=blog_id)
