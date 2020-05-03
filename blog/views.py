@@ -27,7 +27,6 @@ def allblogs(request):
                     {
                         'blogs':blogs, 
                         'last_blog':last_blog, 
-                        'items':items, 
                         'weather':weather,
                         'weather_desc':weather["weather"][0]["description"], 
                         'addres':response_ip, 
