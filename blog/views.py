@@ -11,8 +11,6 @@ def allblogs(request):
     last_blog = Blog.objects.all().last()
     url_ip = "https://ip-geo-location.p.rapidapi.com/ip/" + str(x_forwarded_for)
     new_url = "https://ip-geo-location.p.rapidapi.com/ip/10.155.219.74"
-    if url_ip == new_url:
-        print("same ip")
     print(url_ip)
     querystring_ip = {"format":"json"}
     headers_ip = {
@@ -21,16 +19,11 @@ def allblogs(request):
         }
     response_ip = requests.request("GET", url_ip, headers=headers_ip, params=querystring_ip)
     response_ip = response_ip.json()
-    url = "https://community-open-weather-map.p.rapidapi.com/weather"
-    querystring = { "id":"2172797",
-                    "units":"metric",
-                    "q":"London,uk"
+    url = "https://api.openweathermap.org/data/2.5/weather?"
+    querystring = { "q":"London",
+                    "appid":"f2c22ffb64b399b3a2aecccfe3fd34f4"
                     }
-    headers = {
-        'x-rapidapi-host': "community-open-weather-map.p.rapidapi.com",
-        'x-rapidapi-key': "1fe53a3500msh648ee33bcb45224p1791e1jsne51a930b6e9e"
-        }
-    response = requests.request("GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, params=querystring)
     weather = response.json()
     return render(request, 'blog/allblogs.html',{'blogs':blogs, 'last_blog':last_blog, 'items':items, 
                     'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':response_ip, 'ip_addres':url_ip})
