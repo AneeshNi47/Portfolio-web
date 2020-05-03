@@ -1,15 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 import requests
 from .models import Blog
-from .models import testTable
 
 def allblogs(request):
     x_forwarded_for = request.META.get('REMOTE_ADDR')
     print(x_forwarded_for)
     blogs = Blog.objects
-    items = testTable.objects
     last_blog = Blog.objects.all().last()
-    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/" + str(x_forwarded_for)
+    url_ip = "https://ip-geo-location.p.rapidapi.com/ip/" + x_forwarded_for
     new_url = "https://ip-geo-location.p.rapidapi.com/ip/10.155.219.74"
     print(url_ip)
     querystring_ip = {"format":"json"}
@@ -25,8 +23,16 @@ def allblogs(request):
                     }
     response = requests.request("GET", url, params=querystring)
     weather = response.json()
-    return render(request, 'blog/allblogs.html',{'blogs':blogs, 'last_blog':last_blog, 'items':items, 
-                    'weather':weather,'weather_desc':weather["weather"][0]["description"], 'addres':response_ip, 'ip_addres':url_ip})
+    return render(request, 'blog/allblogs.html',
+                    {
+                        'blogs':blogs, 
+                        'last_blog':last_blog, 
+                        'items':items, 
+                        'weather':weather,
+                        'weather_desc':weather["weather"][0]["description"], 
+                        'addres':response_ip, 
+                        'ip_addres':x_forwarded_for}
+                        )
 
 def detail(request, blog_id):
     detailblog = get_object_or_404(Blog, pk=blog_id)

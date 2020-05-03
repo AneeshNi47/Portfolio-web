@@ -21,8 +21,3 @@ class Blog(models.Model):
      
      def pub_date_pretty(self):
           return self.pub_date.strftime('%b %e %Y')
-
-
-class testTable(models.Model):
-     title_test = models.ForeignKey('Blog',on_delete=models.CASCADE)
-     text_about = models.CharField(max_length=200, default='')
