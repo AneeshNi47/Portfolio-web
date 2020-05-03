@@ -16,7 +16,7 @@ def allblogs(request):
         'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
         'x-rapidapi-key': "567ab5fe7bmsh396072837da1a2cp161316jsnb5774dba1784"
         }
-    response_ip = requests.request("GET", url_new, headers=headers_ip, params=querystring_ip)
+    response_ip = requests.request("GET", url_ip, headers=headers_ip, params=querystring_ip)
     response_ip = response_ip.json()
     url = "https://api.openweathermap.org/data/2.5/weather?"
     querystring = { "q":"Kerala",
