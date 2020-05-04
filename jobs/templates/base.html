@@ -1,84 +1,113 @@
-<!doctype html>
-{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Aneesh Bharath">
-    <meta name="generator" content="Jekyll v3.8.6">
-    <title>Aneesh Bharath · Portfolio</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
+  <title>MyPortfolio - Aneesh Bharath</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- Favicons -->
-    <meta name="theme-color" content="#563d7c">
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
 
-      .fa-twitter:hover {
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+  .fa-twitter:hover {
     color:DodgerBlue;
     }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+  </style>
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v2.0.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Aneesh Bharath</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link" href="https://twitter.com/Aneesh97B" target="_blank"><i class="fab fa-twitter" ></i></a>
-            <a class="nav-item nav-link" href="{% static 'CheatSheet.pdf' %}">Resume</a>
-            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+    <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
+      <div class="container py-2 py-md-5">
+        <div class="row align-items-start">
+          <div class="col-md-2">
+            <ul class="custom-menu">
+              <li class="active"><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="about.html">About Me</a></li>
+              <li><a href="{% url 'allblogs' %}">Blog</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="works.html">Works</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 d-none d-md-block  mr-auto">
+            <div class="tweet d-flex">
+              <span class="icofont-twitter text-white mt-2 mr-3"></span>
+              <div>
+                <p>
+                    A freelance coder!.. Python enthusiasts. Creating web applications and solutions! 
+                    <br> 
+                    <a href="https://twitter.com/Aneesh97B"><i class="fab fa-twitter" style="color:white;"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-none d-md-block">
+            <h3>Hire Me</h3>
+              <p>
+                Hello There, I am freelance Python developer with more than 2 years experiance working with 
+                Web Applications and solutions. Venturing into new fields I have been trying out various activites using python.
+                <br> 
+                <a href="mailto:me@aneeshbharath.com">me@aneeshbharath.com</a>
+                <a href="{% static 'CheatSheet.pdf' %}">Resume</a>
+              </p>
           </div>
         </div>
-      </nav>
-    </header>
+
+      </div>
+    </div>
+    
+    <nav class="navbar navbar-light custom-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Aneesh Bharath.</a>
+        <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">
+          <span></span>
+        </a>
+      </div>
+    </nav>
     {% block content %}
 
     {% endblock %}
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#"><i class="fas fa-sort-up fa-2x"></i></a>
-        </p>
-        <p> &copy; Aneesh Bharath {% now 'Y'%}</p>
-      </div>
-    </footer>
+    <!-- ======= Footer ======= -->
+  <footer class="text-muted">
+    <div class="container">
+      <a href=""#><i class="fas fa-sort-up fa-2x" aria-hidden="true"></i></a>
+      <p class="mb-1">&copy; Aneesh Bharath. {% now "Y" %}</p>
+    </div>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/bd553a934e.js" crossorigin="anonymous"></script>
-  </body>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.j' %}s"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
 </html>
 

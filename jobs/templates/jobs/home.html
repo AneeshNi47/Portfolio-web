@@ -3,39 +3,23 @@
 {% block content %}
 
 <main role="main">
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Portfolio</h1>
-      <p class="lead text-muted">
-        Hello All, This page showcases all applications that were developed by me Using the Python Django Framework. 
-        These applications are available for direct purchase and can be customised to suit your requirements
-      </p>
-      <p>
-        <a href="mailto:me@aneeshbharath.com" class="btn btn-primary my-2" target="_blank">Email Me</a>
-      </p>
-    </div>
-  </section>
 
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row">
+      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
         {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="bd-placeholder-img card-img-top"  src="{{ job.image.url }}"/>
-            <div class="card-body">
-              <h3>
-                {{ job.title }}
-              </h3>
-              <p class="card-text">
-                {{ job.summary}}
-              </p>
-            </div>
+          <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+            <a href="work-single.html" class="item-wrap fancybox">
+              <div class="work-info">
+                <h3>{{ job.title }}</h3>
+                <span>{{ job.summary}}</span>
+              </div>
+              <img class="img-fluid" src="{{ job.image.url }}">
+            </a>
           </div>
-        </div>
         {% endfor %}
-      </div>
+        </div>
 
       <a href="https://twitter.com/intent/tweet" class="twitter-mention-button" data-show-count="false" 
           data-size="large"
