@@ -3,7 +3,9 @@ import requests
 from .models import Blog
 
 def allblogs(request):
-    x_forwarded_for = request.META.get('HTTP_HOST')
+    x_forwarded_for = request.META.get('REMOTE_HOST')
+    keys = request.META.values()
+    print(keys)
     print(x_forwarded_for)
     blogs = Blog.objects
     last_blog = Blog.objects.all().last()

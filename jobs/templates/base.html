@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="author" content="Aneesh Bharath">
     <meta name="generator" content="Jekyll v3.8.6">
     <title>Aneesh Bharath · Portfolio</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
@@ -47,40 +47,38 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
   </head>
 
-<body>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'home' %}">Aneesh Bharath</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="https://twitter.com/Aneesh97B" target="_blank"><i class="fab fa-twitter" ></i></a>
-                    <a class="nav-item nav-link" href="{% static 'CheatSheet.pdf' %}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-{% block content %}
-
-{% endblock %}
-
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#"><i class="fas fa-sort-up fa-2x"></i></a>
-            </p>
-            <p> &copy; Aneesh Bharath {% now 'Y'%}</p>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Aneesh Bharath</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="https://twitter.com/Aneesh97B" target="_blank"><i class="fab fa-twitter" ></i></a>
+            <a class="nav-item nav-link" href="{% static 'CheatSheet.pdf' %}">Resume</a>
+            <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          </div>
         </div>
+      </nav>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#"><i class="fas fa-sort-up fa-2x"></i></a>
+        </p>
+        <p> &copy; Aneesh Bharath {% now 'Y'%}</p>
+      </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/bd553a934e.js" crossorigin="anonymous"></script>
-    </body>
+  </body>
 </html>
 
