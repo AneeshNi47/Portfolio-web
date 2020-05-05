@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['aneesh-bharath.herokuapp.com']
 INSTALLED_APPS = [
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
+    'contact.apps.ContactConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
