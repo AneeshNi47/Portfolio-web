@@ -2,14 +2,41 @@
 
 {% block content %}
 <main role="main" class="container">
-<h1 class="display-4 font-italic">{{ blog.title }}</h1>
+<h1 class="display-4 font-bold">{{ blog.title }}</h1>
   <div class="row">
     <div class="col-md-8 blog-main">
       <div class="blog-post">
         <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
-        <p>
-        {{ blog.body }}
-        </p>
+        <p>{{ blog.body1 }}</p><br>
+          <i class="w3-serif w3-large">Code</i>
+          <div class="w3-panel w3-leftbar">
+            <p style="color:#1DA1F2;">
+              <i class="fa fa-quote-right w3-large"></i><br>
+                <i class="w3-serif w3-large" style="color:#1DA1F2;">
+                  {{ blog.code1|linebreaks }}
+                </i>
+            </p>
+          </div>
+        <p>{{ blog.body2 }}</p><br>
+          <i class="w3-serif w3-large">Code</i>
+          <div class="w3-panel w3-leftbar">
+            <p style="color:#1DA1F2;">
+              <i class="fa fa-quote-right w3-large"></i><br>
+                <i class="w3-serif w3-large" style="color:#1DA1F2;">>
+                  {{ blog.code2|linebreaks }}
+                </i>
+            </p>
+          </div>
+        <p>{{ blog.body3 }}</p><br>
+          <i class="w3-serif w3-large">Code</i>
+          <div class="w3-panel w3-leftbar">
+            <p style="color:#1DA1F2;">
+              <i class="fa fa-quote-right w3-large"></i><br>
+                <i class="w3-serif w3-large" style="color:#1DA1F2;">
+                  {{ blog.code3|linebreaks }}
+                </i>
+            </p>
+          </div>
       </div><!-- /.blog-post -->
 
       <nav class="blog-pagination">

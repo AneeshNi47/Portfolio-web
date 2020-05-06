@@ -6,7 +6,12 @@ from django.contrib.auth.models import User
 class Blog(models.Model):
      title = models.CharField(max_length=200, default='')
      pub_date = models.DateTimeField()
-     body = models.TextField()
+     body1 = models.TextField(default='')
+     code1 = models.TextField(default='')
+     body2 = models.TextField(default='')
+     code2 = models.TextField(default='')
+     body3 = models.TextField(default='')
+     code3 = models.TextField(default='')
      image = models.ImageField(upload_to='image/')
      hashtags1 = models.CharField(max_length=200, default='')
      hashtags2 = models.CharField(max_length=200, default='')
@@ -17,7 +22,7 @@ class Blog(models.Model):
           return self.title
 
      def summary(self):
-          return self.body[:200]
+          return self.body1[:200]
      
      def pub_date_pretty(self):
           return self.pub_date.strftime('%b %e %Y')
