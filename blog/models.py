@@ -26,3 +26,7 @@ class Blog(models.Model):
      
      def pub_date_pretty(self):
           return self.pub_date.strftime('%b %e, %Y')
+     
+     def url_fbshrer(self):
+          urlfb = "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Faneesh-bharath.herokuapp.com%2Fblog%2F{}%2F&amp;src=sdkpreparse".format(self.id) 
+          return urlfb
