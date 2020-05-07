@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+#lasted_blog{
+  border-radius: 50%;
+}
+</style>
   <div class="container">
     <div class="nav-scroller py-1 mb-2">
       <nav class="nav d-flex justify-content-between">
@@ -19,12 +24,17 @@
       </nav>
     </div>
       <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic">{{last_blog.title}}</h1>
-          <p class="lead my-3">
-            {{ last_blog.summary }}
-          </p>
-          <p class="lead mb-0"><a href="{% url 'detail' last_blog.id %}" class="text-white font-weight-bold">Continue reading...</a></p>
+        <div class="row">
+          <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">{{last_blog.title}}</h1>
+            <p class="lead my-3">
+              {{ last_blog.summary }}
+            </p>
+            <p class="lead mb-0"><a href="{% url 'detail' last_blog.id %}" class="text-white font-weight-bold"><br>Continue reading...</a></p>
+          </div>
+          <div class="col-md-6">
+            <img id="lasted_blog" src="{{ last_blog.image.url }}" class="img-rounded" width="304" height="236"> 
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +50,7 @@
         <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
         <p>
         {{ blog.summary }}
-        <a href="{% url 'detail' blog.id %}">Continue Reading..</a>
+        <br><a href="{% url 'detail' blog.id %}">Continue Reading..</a>
         </p>
       </div><!-- /.blog-post -->
     {% endfor %}
@@ -51,10 +61,6 @@
       <div class="p-4 mb-3 bg-light rounded">
         <br>
         Weather: {{ weather_desc }}
-        <br>
-        Location: {{ addres.area.name }}
-        <br>
-        Ip: {{ ip_addres }}
       </div>
 
 
@@ -85,7 +91,6 @@
         </ol>
       </div>-->
     </aside><!-- /.blog-sidebar -->
-<div id="openweathermap-widget-15"></div>
 
   </div><!-- /.row -->
 
