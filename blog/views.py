@@ -5,20 +5,7 @@ from .models import Blog
 def allblogs(request):
     blogs = Blog.objects
     last_blog = Blog.objects.all().last()
-    url = "https://api.openweathermap.org/data/2.5/weather?"
-    querystring = { "q":"Kerala",
-                    "appid":"f2c22ffb64b399b3a2aecccfe3fd34f4"
-                    }
-    response = requests.request("GET", url, params=querystring)
-    weather = response.json()
-    return render(request, 'blog/allblogs.html',
-                    {
-                        'blogs':blogs, 
-                        'last_blog':last_blog, 
-                        'weather':weather,
-                        'weather_desc':weather["weather"][0]["description"]
-                        }
-                    )
+    return render(request, 'blog/allblogs.html',{'blogs':blogs,'last_blog':last_blog} )
 
 def detail(request, blog_id):
     detailblog = get_object_or_404(Blog, pk=blog_id)
@@ -26,8 +13,7 @@ def detail(request, blog_id):
 
 
 
-    #x_forwarded_for = request.META.get('REMOTE_HOST')
-    #print(x_forwarded_for)
+    
     #url_ip = "https://ip-geo-location.p.rapidapi.com/ip/" + str(x_forwarded_for)
     #print(url_ip)
     #querystring_ip = {"format":"json"}

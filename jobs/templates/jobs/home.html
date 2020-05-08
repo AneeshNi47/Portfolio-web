@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<title>MyPortfolio - Aneesh Bharath</title>
+<title>MyPortfolio - Aneesh Bharath</title> 
 <main role="main">
-
   <div class="album py-5">
     <div class="container">
 
@@ -20,23 +19,7 @@
           </div>
         {% endfor %}
         </div>
-
-      <a href="https://twitter.com/intent/tweet" class="twitter-mention-button" data-show-count="false" 
-          data-size="large"
-          data-text="I found an interesting Blog!"
-          data-url="{% url 'home' %}"
-          data-hashtags="PythonProgramming,demo"
-          data-via="Aneesh97B"
-          data-related="twitterapi,twitter">Tweet to @Aneesh97B
-      </a>
-      <blockquote class="twitter-tweet">
-        <p lang="en" dir="ltr">I just find out random reading material digging through the net! Kind of my relaxation after all the <a href="https://twitter.com/hashtag/Coding?src=hash&amp;ref_src=twsrc%5Etfw">#Coding</a> ...
-        <a href="https://twitter.com/hashtag/RandomThoughts?src=hash&amp;ref_src=twsrc%5Etfw">#RandomThoughts</a>
-        <br>And today I found <a href="https://twitter.com/hashtag/aibox?src=hash&amp;ref_src=twsrc%5Etfw">#aibox</a>
-        <br>
-        <br>An AI box is a hypothetical isolated computer hardware system where a possibly dangerous artificial intelligence</p>&mdash; Aneesh Bharath (@Aneesh97B) 
-        <a href="https://twitter.com/Aneesh97B/status/1254829036716490753?ref_src=twsrc%5Etfw">April 27, 2020</a>
-      </blockquote> 
+      <a class="twitter-timeline" href="https://twitter.com/Aneesh97B" data-tweet-limit="1" ></a> 
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
     </div>
