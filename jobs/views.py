@@ -49,22 +49,22 @@ def home(request):
                     }
     weather_response = requests.request("GET", weather_url, params=querystring)
     weather = weather_response.json()
-    print(location_now)
-    print(weather)
-    print(weather["weather"][0])
-    print(weather["main"]["temp"])
-    print(type(weather["main"]["temp_min"]))
-    print(weather["main"]["temp_max"])
-    print(weather["main"]["pressure"])
-    print(weather["main"]["humidity"])
+    #print(location_now)
+    #print(weather)
+    #print(weather["weather"][0])
+    #print(weather["main"]["temp"])
+    #print(type(weather["main"]["temp_min"]))
+    #print(weather["main"]["temp_max"])
+    #print(weather["main"]["pressure"])
+    #print(weather["main"]["humidity"])
 
     return render(request, 'jobs/home.html', 
                     {'jobs':jobs,
                     'location':location_now,
                     'pressure':weather["main"]["pressure"],
                     'humidity':weather["main"]["humidity"],
-                    'temp_min':weather["main"]["temp_min"] - 273.15,
-                    'temp_max':weather["main"]["temp_max"] - 273.15,
+                    'temp_min':round(weather["main"]["temp_min"] - 273.15,2),
+                    'temp_max':round(weather["main"]["temp_max"] - 273.15,2),
                     'icon':weather["weather"][0]["icon"]
                     })
 
