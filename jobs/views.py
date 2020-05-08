@@ -13,6 +13,14 @@ def home(request):
     response_ip = requests.request("GET", url_ip)
     ip_address = response_ip.text.split()
     if last_visitor:
+        if last_visitor.userip != ip_address[2][3:]:
+            check_now = True
+        else:
+            check_now = False
+    else:
+        check_now = True
+    
+    if check_now:
         #convert IP to location
         ip_toLocation = "https://ip-geo-location.p.rapidapi.com/ip/" + ip_address[2][3:]
         querystring_ip = {"format":"json"}
@@ -20,35 +28,45 @@ def home(request):
             'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
             'x-rapidapi-key': "567ab5fe7bmsh396072837da1a2cp161316jsnb5774dba1784"
             }
-        if last_visitor.userip != ip_address[2][3:]:
-            response_ip = requests.request("GET", ip_toLocation, headers=headers_ip, params=querystring_ip)
-            response_ip = response_ip.json()
-            print(response_ip['area']['name'])
-            #convert location to weather
-            weather_url = "https://api.openweathermap.org/data/2.5/weather?"
-            querystring = { "q":response_ip['area']['name'],
-                            "appid":"f2c22ffb64b399b3a2aecccfe3fd34f4"
-                            }
-            weather_response = requests.request("GET", weather_url, params=querystring)
-            weather = weather_response.json()
-            print(weather["weather"][0])
-            print(weather["main"]["temp"])
-            print(weather["main"]["pressure"])
-            print(weather["main"]["humidity"])
-            visitor = Vistor()
-            visitor.userip = ip_address[2][3:]
-            visitor.location = response_ip['area']['name']
-            visitor.visit_date = timezone.datetime.now()
-            visitor.save()
-            print(ip_address[2][3:])
-        else:
-            print("User already present")
-    else:
+        response_ip = requests.request("GET", ip_toLocation, headers=headers_ip, params=querystring_ip)
+        response_ip = response_ip.json()
+        location_now = response_ip['area']['name']
+        print(response_ip['area']['name'])
         visitor = Vistor()
         visitor.userip = ip_address[2][3:]
+        visitor.location = response_ip['area']['name']
+        visitor.visit_date = timezone.datetime.now()
         visitor.save()
+        print(ip_address[2][3:])
+    else:
+        print("User already present")
+        location_now = last_visitor.location
+    
+    #convert location to weather
+    weather_url = "https://api.openweathermap.org/data/2.5/weather?"
+    querystring = { "q":location_now,
+                    "appid":"f2c22ffb64b399b3a2aecccfe3fd34f4"
+                    }
+    weather_response = requests.request("GET", weather_url, params=querystring)
+    weather = weather_response.json()
+    print(location_now)
+    print(weather)
+    print(weather["weather"][0])
+    print(weather["main"]["temp"])
+    print(type(weather["main"]["temp_min"]))
+    print(weather["main"]["temp_max"])
+    print(weather["main"]["pressure"])
+    print(weather["main"]["humidity"])
 
-    return render(request, 'jobs/home.html', {'jobs':jobs})
+    return render(request, 'jobs/home.html', 
+                    {'jobs':jobs,
+                    'location':location_now,
+                    'pressure':weather["main"]["pressure"],
+                    'humidity':weather["main"]["humidity"],
+                    'temp_min':weather["main"]["temp_min"] - 273.15,
+                    'temp_max':weather["main"]["temp_max"] - 273.15,
+                    'icon':weather["weather"][0]["icon"]
+                    })
 
 
 #'weather_desc':
