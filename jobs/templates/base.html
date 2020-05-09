@@ -38,7 +38,10 @@
     <script>
         var ipinfo;
         $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data){
-            $("#info").html(data)
+          ip = data.split('\n');
+            $("#info").html(ip[2])
+            console.log(ip[2])
+            document.getElementById("info").value = ip[2];
         })
     </script>
 </head>
@@ -90,7 +93,10 @@
         </a>
       </div>
     </nav>
-    <p id="info"></p>
+    <form method="POST" action="{% url 'home' %}">
+      {% csrf_token %}
+        <input type="hidden" id="info" name="visitor_ip" value=""/>
+    </form>
     {% block content %}
 
     {% endblock %}

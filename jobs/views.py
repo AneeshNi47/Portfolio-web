@@ -8,18 +8,24 @@ from django.utils import timezone
 def home(request):
     jobs = Job.objects
     last_visitor = Vistor.objects.all().last()
-    # get user ip address
-    url_ip = "https://www.cloudflare.com/cdn-cgi/trace"
-    response_ip = requests.request("GET", url_ip)
-    ip_address = response_ip.text.split()
-    if last_visitor:
-        if last_visitor.userip != ip_address[2][3:]:
-            check_now = True
+    if request.method == 'POST':
+        response_ip = request.POST['visitor_ip']
+        ip_address = response_ip.text.split()
+        # get user ip address
+        #url_ip = "https://www.cloudflare.com/cdn-cgi/trace"
+        #response_ip = requests.request("GET", url_ip)
+        #ip_address = response_ip.text.split()
+        if last_visitor:
+            if last_visitor.userip != ip_address[2][3:]:
+                check_now = True
+            else:
+                check_now = False
         else:
-            check_now = False
+            check_now = True
     else:
-        check_now = True
-    
+        check_now = False
+
+
     if check_now:
         #convert IP to location
         ip_toLocation = "https://ip-geo-location.p.rapidapi.com/ip/" + ip_address[2][3:]
