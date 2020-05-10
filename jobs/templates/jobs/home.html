@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<script>
+  $.get('https://www.cloudflare.com/cdn-cgi/trace', function(data){
+      ip = data.split('\n');
+      $("#info").html(ip[2])
+        console.log(ip[2])
+        document.getElementById("info").value = ip[2];
+      });
+      $.post("/jobs/home.html",
+        {
+          ip_address: ip[2]
+        });
+</script>
 <title>MyPortfolio - Aneesh Bharath</title> 
 <main role="main">
   <div class="album py-5">
@@ -18,7 +30,7 @@
           </div>
         {% endfor %}
         </div>
-      <a class="twitter-timeline" href="https://twitter.com/Aneesh97B" data-width="300" data-height="300" data-tweet-limit="1" ></a> 
+      <a class="twitter-timeline" href="https://twitter.com/Aneesh97B" data-tweet-limit="1" ></a> 
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
     </div>

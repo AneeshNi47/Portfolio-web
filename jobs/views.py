@@ -9,6 +9,7 @@ def home(request):
     jobs = Job.objects
     last_visitor = Vistor.objects.all().last()
     if request.method == 'POST':
+        print("Post request")
         response_ip = request.POST['visitor_ip']
         ip_address = response_ip.text.split()
         # get user ip address
@@ -17,13 +18,17 @@ def home(request):
         #ip_address = response_ip.text.split()
         if last_visitor:
             if last_visitor.userip != ip_address[2][3:]:
+                print("Check with DB table true")
                 check_now = True
             else:
                 check_now = False
+                print("Check with DB table False")
         else:
             check_now = True
+            print("Check with DB table not present")
     else:
         check_now = False
+        print("not a post request")
 
 
     if check_now:

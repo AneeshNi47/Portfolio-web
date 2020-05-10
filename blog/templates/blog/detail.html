@@ -8,7 +8,7 @@
     <div class="col-md-8 blog-main">
       <div class="blog-post">
         <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
-        <p>{{ blog.body1 }}</p><br>
+        <p>{{ blog.body1|urlize }}</p><br>
           <i class="w3-serif w3-large">Code</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
@@ -18,7 +18,7 @@
                 </i>
             </p>
           </div>
-        <p>{{ blog.body2 }}</p><br>
+        <p>{{ blog.body2|urlize }}</p><br>
           <i class="w3-serif w3-large">Code</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
@@ -28,7 +28,7 @@
                 </i>
             </p>
           </div>
-        <p>{{ blog.body3 }}</p><br>
+        <p>{{ blog.body3|urlize }}</p><br>
           <i class="w3-serif w3-large">Code</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
