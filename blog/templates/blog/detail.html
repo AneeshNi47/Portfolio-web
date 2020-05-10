@@ -77,9 +77,9 @@
     </aside><!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
-  <br>
+  <hr>
   <div class="row">
-    <div class="col-2">
+    <div class="col">
       <a href="https://twitter.com/intent/tweet" class="twitter-share-button" data-show-count="false" 
               data-size="large"
               data-text="Check out this blog - {{ blog.title }}"
@@ -89,18 +89,16 @@
               data-related="twitterapi,twitter">
       </a>
     </div>
-    <div class="col-2">
+    <div class="col">
       <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small">
         <a target="_blank" href="{{ blog.url_fbshrer }}"><i class="fab fa-facebook fa-2x" style="color:#3b5998;"></i></a>
       </div>
     </div>
-    <div class="col-1">
+    <div class="col">
       <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
       <script type="IN/Share" data-url="https://aneesh-bharath.herokuapp.com/blog/{{ blog.id }}/"></script>
     </div>
   </div>
-  <div class="col-12">
-    <a target="_blank" href="https://icons8.com/icons/set/python">App</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
-  </div>
+  <hr>
 </main><!-- /.container -->
 {% endblock %}
