@@ -8,6 +8,35 @@
     <div class="col-md-8 blog-main">
       <div class="blog-post">
         <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
+        <p>
+        <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        <div class="col-2">
+          {% if blog.icon1 %}
+            <a href="{{ blog.icon1link }}" target="_blank">
+              <img class="img-thumbnail" alt="{{ blog.icon1 }}" src="{{ blog.icon1.url }}"/>
+            </a>
+          {% endif %}
+        </div>
+        <div class="col-2">
+          {% if blog.icon2 %}
+            <a href="{{ blog.icon2link }}" target="_blank">
+              <img class="img-thumbnail" alt="{{ blog.icon2 }}" src="{{ blog.icon2.url }}"/>
+            </a>
+          {% endif %}
+        </div>
+        <div class="col-2">
+          {% if blog.icon3 %}
+            <a href="{{ blog.icon3link }}" target="_blank">
+              <img class="img-thumbnail" alt="{{ blog.icon3 }}" src="{{ blog.icon3.url }}"/>
+            </a>
+          {% endif %}
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2"></div>
+        </div>
+        </p>
         <p>{{ blog.body1|urlize }}</p><br>
           <i class="w3-serif w3-large">Code</i>
           <div class="w3-panel w3-leftbar">
@@ -50,7 +79,7 @@
   </div><!-- /.row -->
   <br>
   <div class="row">
-    <div class="col-1">
+    <div class="col-2">
       <a href="https://twitter.com/intent/tweet" class="twitter-share-button" data-show-count="false" 
               data-size="large"
               data-text="Check out this blog - {{ blog.title }}"
@@ -60,7 +89,7 @@
               data-related="twitterapi,twitter">
       </a>
     </div>
-    <div class="col-1">
+    <div class="col-2">
       <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small">
         <a target="_blank" href="{{ blog.url_fbshrer }}"><i class="fab fa-facebook fa-2x" style="color:#3b5998;"></i></a>
       </div>
@@ -69,6 +98,9 @@
       <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
       <script type="IN/Share" data-url="https://aneesh-bharath.herokuapp.com/blog/{{ blog.id }}/"></script>
     </div>
+  </div>
+  <div class="col-12">
+    <a target="_blank" href="https://icons8.com/icons/set/python">App</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
   </div>
 </main><!-- /.container -->
 {% endblock %}
