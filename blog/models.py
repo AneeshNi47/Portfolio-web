@@ -29,7 +29,7 @@ class Blog(models.Model):
 
      def summary(self):
           return self.body1[:200]
-     
+
      def urltitle(self):
           title_url = self.title.replace(" ", "_")
           return title_url
@@ -38,7 +38,7 @@ class Blog(models.Model):
           return self.pub_date.strftime('%b %e, %Y')
      
      def url_linkedin(self):
-          urlinkedin = "https://aneesh-bharath.herokuapp.com/blog/{}/".format(self.id) 
+          urlinkedin = "https://aneesh-bharath.herokuapp.com/blog/{}/".format(self.urltitle) 
           return urlinkedin
      
      def url_fbshrer(self):
