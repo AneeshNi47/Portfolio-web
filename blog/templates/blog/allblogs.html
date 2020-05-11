@@ -30,7 +30,7 @@
             <p class="lead my-3">
               {{ last_blog.summary }}
             </p>
-            <p class="lead mb-0"><a href="{% url 'detail' last_blog.id %}" class="text-white font-weight-bold"><br>Continue reading...</a></p>
+            <p class="lead mb-0"><a href="{% url 'detail' last_blog.title %}" class="text-white font-weight-bold"><br>Continue reading...</a></p>
           </div>
           <div class="col-md-6">
             <img id="lasted_blog" src="{{ last_blog.image.url }}" class="img-rounded" width="304" height="236"> 
@@ -50,7 +50,7 @@
         <p class="blog-post-meta">{{ blog.pub_date_pretty }} by <a href="#">{{ blog.author }}</a></p>
         <p>
         {{ blog.summary }}
-        <br><a href="{% url 'detail' blog.id %}">Continue Reading..</a>
+        <br><a href="{% url 'detail' blog.title %}">Continue Reading..</a>
         </p>
       </div><!-- /.blog-post -->
     {% endfor %}
