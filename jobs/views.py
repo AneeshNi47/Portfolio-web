@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import Job
-from .models import Vistor
+from .models import Job, Vistor, Services, ServicePoints, Testimonial
 import requests
 from django.utils import timezone
 # Create your views here.
@@ -78,6 +77,15 @@ def home(request):
                     'temp_max':round(weather["main"]["temp_max"] - 273.15,2),
                     'icon':weather["weather"][0]["icon"]
                     })
+
+
+def services(request):
+    services = Services.objects
+    servicespoints = ServicePoints.objects
+    Testimonials = Testimonial.objects
+    return render(request, 'jobs/services.html', {  'services':services, 
+                                                    'servicespoints':servicespoints,
+                                                    'Testimonials':Testimonials})
 
 
 #'weather_desc':

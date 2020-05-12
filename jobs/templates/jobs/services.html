@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-6" data-aos="fade-up">
+            <h2>My Services</h2>
+            <p>
+                These are some of the basic services I provide. Having good exposure in all the below 
+                mentioned services I provide each service on a fixed rate basis.
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <div class="site-section pb-0">
+        <div class="container">
+            <div class="row">
+                {% for service in services.all %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                        <img src="{{ service.service_icon.url }}" alt="{{ service.service_icon }}" style="width:50px;height:60px;">
+                        <h4 class="h4 mb-2">{{ service.service_title }}</h4>
+                        <p>{{ service.service_description }}</p>
+                        {% for servicespoint in servicespoints.all %}
+                            {% if servicespoint.service_id == service %}
+                                <ul class="list-unstyled list-line">
+                                    <li>{{ servicespoint.service_point }}</li>
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+          </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ======= Testimonials Section ======= -->
+{% if  Testimonials %}
+    <section class="section pt-0">
+        <div class="container">
+
+            <div class="owl-carousel testimonial-carousel">
+                {% for  Testimonial in Testimonials.all %}
+                    <div class="testimonial-wrap">
+                        <div class="testimonial">
+                        <img src="{{ Testimonial.image.url}}" alt="Image" class="img-fluid">
+                        <blockquote>
+                            <p>{{ Testimonial.comment }}</p>
+                        </blockquote>
+                        <p>&mdash; {{ Testimonial.user_name }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section><!-- End Testimonials Section -->
+{% endif %}
+
+    
+{% endblock %}
