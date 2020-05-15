@@ -38,9 +38,10 @@ class Blog(models.Model):
           return self.pub_date.strftime('%b %e, %Y')
      
      def url_linkedin(self):
-          urlinkedin = "https://aneesh-bharath.herokuapp.com/blog/{}/".format(self.urltitle) 
+          urlinkedin = "http://www.aneeshbharath.com/blog/{}/".format(self.urltitle()) 
           return urlinkedin
      
      def url_fbshrer(self):
-          urlfb = "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Faneesh-bharath.herokuapp.com%2Fblog%2F{}%2F&amp;src=sdkpreparse".format(self.id) 
+          urlfb = "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.aneeshbharath.com%2Fblog%2F{}%2F&amp;src=sdkpreparse".format(self.urltitle())
+          print(self.urltitle())
           return urlfb

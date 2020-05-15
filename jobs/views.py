@@ -82,10 +82,20 @@ def home(request):
 def services(request):
     services = Services.objects
     servicespoints = ServicePoints.objects
-    Testimonials = Testimonial.objects
+    Testimonials = Testimonial.objects.filter(verification='verified')
     return render(request, 'jobs/services.html', {  'services':services, 
                                                     'servicespoints':servicespoints,
                                                     'Testimonials':Testimonials})
+
+def addTestimonials(request):
+    if request.method == 'POST':
+        testimonial = Testimonial()
+        image = request.POST['image']
+        comment = request.POST['comment']
+        user_name = request.POST['username']
+        user_email = request.POST['useremail']
+        testimonial.save()
+    return HttpResponse('')
 
 
 #'weather_desc':

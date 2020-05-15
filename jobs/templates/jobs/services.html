@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .crop {
+        width: 200px;
+        height: 150px;
+        overflow: hidden;
+    }
 
+    .crop img {
+        width: 400px;
+        height: 300px;
+        margin: -75px 0 0 -100px;
+    }
+</style>
 <section class="section">
 
     <div class="container">
@@ -31,6 +43,7 @@
                                 </ul>
                             {% endif %}
                         {% endfor %}
+                        <button type="button" class="btn btn-primary">Get Quote</button>
                     </div>
                 {% endfor %}
           </div>
@@ -42,20 +55,19 @@
 {% if  Testimonials %}
     <section class="section pt-0">
         <div class="container">
-
+            <a type="button" data-toggle="modal" data-target="#add_testimonial"><i class="fas fa-plus fa-lg"></i></a>
             <div class="owl-carousel testimonial-carousel">
                 {% for  Testimonial in Testimonials.all %}
                     <div class="testimonial-wrap">
                         <div class="testimonial">
-                        <img src="{{ Testimonial.image.url}}" alt="Image" class="img-fluid">
-                        <blockquote>
-                            <p>{{ Testimonial.comment }}</p>
-                        </blockquote>
-                        <p>&mdash; {{ Testimonial.user_name }}</p>
+                            <img src="{{ Testimonial.image.url}}" alt="Image" class="img-fluid">
+                            <blockquote>
+                                <p>{{ Testimonial.comment }}</p>
+                            </blockquote>
+                            <p>&mdash; {{ Testimonial.user_name }}</p>
                         </div>
                     </div>
                 {% endfor %}
-
             </div>
 
         </div>
@@ -63,4 +75,42 @@
 {% endif %}
 
     
+        <div class="modal fade" id="add_testimonial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Write a Testimonial!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/addTestimonials/" method="post" enctype="multipart/form-data" role="form" class="php-email-form">
+                    <div class="form-group">
+                        <label for="fname">Name:</label>
+                        <input type="text" id="fname" class="form-control" name="name"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Email:</label>
+                        <input type="text" id="lname"  class="form-control" name="email"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Testimonial:</label>
+                        <textarea class="form-control" name="message" cols="20" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Image:</label>
+                        <input type="file" name="image" class="form-control-file" id="fileToUpload">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form> 
+              </div>
+              <div class="modal-footer">
+                <p>Your Testimonial will appear in the site after it has been verified!</p>
+              </div>
+            </div>
+          </div>
+        </div>
 {% endblock %}
