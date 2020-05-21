@@ -105,9 +105,6 @@ def addQuoteRequest(request):
     if request.method == 'POST':
         quotes = QuoteRequest()
         service_id = request.POST['proj_type']
-        print("------------------------")
-        print(service_id)
-        print("------------------------")
         quotes.project_type = Services.objects.get(id = request.POST['proj_type'])
         quotes.user_name = request.POST['username']
         quotes.user_email = request.POST['useremail']

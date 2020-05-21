@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Contact
 from django.utils import timezone
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 import jobs.views
 
 # Create your views here.
@@ -14,7 +16,8 @@ def contact(request):
         contact.status = "Open"
         contact.contact_date = timezone.datetime.now()
         contact.save()
-        return render(request, 'success.html')
+        messages.info(request, 'Your Message has been sent, We will contact you soon!')
+        return HttpResponseRedirect('/contact')
     else:
         return render(request, 'contact.html')
 
