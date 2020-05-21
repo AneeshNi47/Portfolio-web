@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', jobs.views.home, name='home'),
     path('services/', jobs.views.services, name='services'),
+    path('jobs/addTestimonials', jobs.views.addTestimonials, name='addTestimonials'),
+    path('jobs/addQuoteRequest', jobs.views.addQuoteRequest, name='addQuoteRequest'),
     path('', jobs.views.visitor_count, name='visitor_count'),
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('blog/', include('blog.urls'), name='blog'),

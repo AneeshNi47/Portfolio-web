@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from .models import Job, Vistor, Services, ServicePoints, Testimonial
+from django.shortcuts import render, redirect, render_to_response
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from .models import Job, Vistor, Services, ServicePoints, Testimonial, QuoteRequest
 import requests
 from django.utils import timezone
 # Create your views here.
@@ -90,13 +92,31 @@ def services(request):
 def addTestimonials(request):
     if request.method == 'POST':
         testimonial = Testimonial()
-        image = request.POST['image']
-        comment = request.POST['comment']
-        user_name = request.POST['username']
-        user_email = request.POST['useremail']
+        testimonial.image = request.FILES['userimage']
+        testimonial.comment = request.POST['comment']
+        testimonial.user_name = request.POST['username']
+        testimonial.user_email = request.POST['useremail']
         testimonial.save()
-    return HttpResponse('')
+        messages.info(request, 'Thankyou for your feedback, your Testimonial will be displayed soon!')
+    return HttpResponseRedirect('/services')
 
+
+def addQuoteRequest(request):
+    if request.method == 'POST':
+        quotes = QuoteRequest()
+        service_id = request.POST['proj_type']
+        print("------------------------")
+        print(service_id)
+        print("------------------------")
+        quotes.project_type = Services.objects.get(id = request.POST['proj_type'])
+        quotes.user_name = request.POST['username']
+        quotes.user_email = request.POST['useremail']
+        quotes.project_desc = request.POST['description']
+        quotes.budget = request.POST['proj_budget']
+        quotes.final_price = 00
+        quotes.save()
+        messages.info(request, 'Your Quote has been submitted, We will contact you soon!')
+    return HttpResponseRedirect('/services')
 
 #'weather_desc':
 def visitor_count(request):

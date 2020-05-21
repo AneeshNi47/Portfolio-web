@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<title>Services</title>
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message }}');
+        {% endfor %}
+    </script>
+{% endif %}
 <style>
     .crop {
         width: 200px;
@@ -14,6 +22,15 @@
         margin: -75px 0 0 -100px;
     }
 </style>
+
+<script type="text/javascript">
+    function modal_value(value) {
+        var serviceID = $(value).data('id');
+        $(".modal-body #serviceID").val( serviceID );
+        $('#add_quote').modal('show');
+    }
+</script>
+
 <section class="section">
 
     <div class="container">
@@ -43,7 +60,13 @@
                                 </ul>
                             {% endif %}
                         {% endfor %}
-                        <button type="button" class="btn btn-primary">Get Quote</button>
+                        <a ></a>
+                        <button class="readmore d-block" type="button" style="border-radius: 50px;" onclick="modal_value(this)" 
+                        data-toggle="modal" data-id="{{ service.id }}" 
+                        data-toggle="modal"
+                        href="#add_quote" class="btn btn-primary">
+                        Get Quote
+                        </button>
                     </div>
                 {% endfor %}
           </div>
@@ -52,10 +75,9 @@
 </section>
 
     <!-- ======= Testimonials Section ======= -->
-{% if  Testimonials %}
-    <section class="section pt-0">
-        <div class="container">
-            <a type="button" data-toggle="modal" data-target="#add_testimonial"><i class="fas fa-plus fa-lg"></i></a>
+<section class="section pt-0">
+    <div class="container">
+        {% if  Testimonials %}
             <div class="owl-carousel testimonial-carousel">
                 {% for  Testimonial in Testimonials.all %}
                     <div class="testimonial-wrap">
@@ -69,10 +91,13 @@
                     </div>
                 {% endfor %}
             </div>
-
-        </div>
-    </section><!-- End Testimonials Section -->
-{% endif %}
+        {% endif %}
+        <br>
+        <button class="readmore d-block" type="button" data-toggle="modal" style="border-radius: 50px;" data-target="#add_testimonial">
+            Add Testimonial
+        </button>
+    </div>
+</section><!-- End Testimonials Section -->
 
     
         <div class="modal fade" id="add_testimonial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,30 +110,69 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="/addTestimonials/" method="post" enctype="multipart/form-data" role="form" class="php-email-form">
+                <form method="POST" action="{% url 'addTestimonials'%}"  enctype="multipart/form-data" role="form">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="fname">Name:</label>
-                        <input type="text" id="fname" class="form-control" name="name"><br>
+                        <input type="text" id="fname" class="form-control" name="username"><br>
                     </div>
                     <div class="form-group">
                         <label for="lname">Email:</label>
-                        <input type="text" id="lname"  class="form-control" name="email"><br>
+                        <input type="text" id="lname"  class="form-control" name="useremail"><br>
                     </div>
                     <div class="form-group">
                         <label for="lname">Testimonial:</label>
-                        <textarea class="form-control" name="message" cols="20" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                        <textarea class="form-control" name="comment" cols="20" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="lname">Image:</label>
-                        <input type="file" name="image" class="form-control-file" id="fileToUpload">
+                        <input type="file" name="userimage"  id="fileToUpload">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" value="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form> 
               </div>
               <div class="modal-footer">
                 <p>Your Testimonial will appear in the site after it has been verified!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="add_quote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Request a Quote</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="{% url 'addQuoteRequest'%}"  enctype="multipart/form-data" role="form">
+                    {% csrf_token %}
+                    <input type="hidden" id="serviceID" name="proj_type"><br>
+                    <div class="form-group">
+                        <label for="fname">Name:</label>
+                        <input type="text" id="fname" class="form-control" name="username"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Email:</label>
+                        <input type="text" id="lname"  class="form-control" name="useremail"><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Project Description:</label>
+                        <textarea class="form-control" name="description" cols="20" rows="10" data-rule="required" data-msg="Please write something for us"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Estimate Budget <i class="fas fa-dollar-sign"></i> : </label>
+                          <input type="number" class="form-control" id="proj_budget" name="proj_budget">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form> 
               </div>
             </div>
           </div>
