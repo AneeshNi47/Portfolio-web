@@ -4,72 +4,20 @@ from django.contrib import messages
 from .models import Job, Vistor, Services, ServicePoints, Testimonial, QuoteRequest
 import requests
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 def home(request):
     jobs = Job.objects
     last_visitor = Vistor.objects.all().last()
-    if request.method == 'POST':
-        print("Post request")
-        response_ip = request.POST['visitor_ip']
-        ip_address = response_ip.text.split()
-        # get user ip address
-        #url_ip = "https://www.cloudflare.com/cdn-cgi/trace"
-        #response_ip = requests.request("GET", url_ip)
-        #ip_address = response_ip.text.split()
-        if last_visitor:
-            if last_visitor.userip != ip_address[2][3:]:
-                print("Check with DB table true")
-                check_now = True
-            else:
-                check_now = False
-                print("Check with DB table False")
-        else:
-            check_now = True
-            print("Check with DB table not present")
-    else:
-        check_now = False
-        print("not a post request")
-
-
-    if check_now:
-        #convert IP to location
-        ip_toLocation = "https://ip-geo-location.p.rapidapi.com/ip/" + ip_address[2][3:]
-        querystring_ip = {"format":"json"}
-        headers_ip = {
-            'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
-            'x-rapidapi-key': "567ab5fe7bmsh396072837da1a2cp161316jsnb5774dba1784"
-            }
-        response_ip = requests.request("GET", ip_toLocation, headers=headers_ip, params=querystring_ip)
-        response_ip = response_ip.json()
-        location_now = response_ip['area']['name']
-        print(response_ip['area']['name'])
-        visitor = Vistor()
-        visitor.userip = ip_address[2][3:]
-        visitor.location = response_ip['area']['name']
-        visitor.visit_date = timezone.datetime.now()
-        visitor.save()
-        print(ip_address[2][3:])
-    else:
-        print("User already present")
-        location_now = last_visitor.location
-    
-    #convert location to weather
-    weather_url = "https://api.openweathermap.org/data/2.5/weather?"
+    location_now = last_visitor.location
+    weather_url = "https://api.openweathermap.org/data/2.5/weather?"#convert location to weather
     querystring = { "q":location_now,
                     "appid":"f2c22ffb64b399b3a2aecccfe3fd34f4"
                     }
     weather_response = requests.request("GET", weather_url, params=querystring)
     weather = weather_response.json()
-    #print(location_now)
-    #print(weather)
-    #print(weather["weather"][0])
-    #print(weather["main"]["temp"])
-    #print(type(weather["main"]["temp_min"]))
-    #print(weather["main"]["temp_max"])
-    #print(weather["main"]["pressure"])
-    #print(weather["main"]["humidity"])
-
     return render(request, 'jobs/home.html', 
                     {'jobs':jobs,
                     'location':location_now,
@@ -79,6 +27,30 @@ def home(request):
                     'temp_max':round(weather["main"]["temp_max"] - 273.15,2),
                     'icon':weather["weather"][0]["icon"]
                     })
+
+
+def visitor_count(request):
+    print('____________________')
+    if request.method == 'GET':
+        print(request.POST['ip_address'])
+        visitor = Vistor()
+        userip = request.GET['ip_address']
+        visitor.userip = userip[2:]
+        visitor.location = location_now
+        visitor.visit_date = timezone.datetime.now()
+        visitor.save()
+        print('added')
+    print('not added')
+    return HttpResponse('Success')
+
+
+def email(request):
+    subject = 'Thank you for registering to our site'
+    message = ' it  means a world to us \n testing the newline \n testing again'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['me@aneeshbharath.com',]
+    send_mail( subject, message, email_from, recipient_list )
+    return HttpResponse('Success')
 
 
 def services(request):
@@ -97,6 +69,11 @@ def addTestimonials(request):
         testimonial.user_name = request.POST['username']
         testimonial.user_email = request.POST['useremail']
         testimonial.save()
+        subject = 'New Testimonial Added to WebPortfolio!'
+        message = 'A New testimonial was added to the Webportfolio application. \n Name: {}. \n Email: {}. \n Message: {}'.format( request.POST['username'], request.POST['useremail'], request.POST['comment'])
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['me@aneeshbharath.com',]
+        send_mail( subject, message, email_from, recipient_list )
         messages.info(request, 'Thankyou for your feedback, your Testimonial will be displayed soon!')
     return HttpResponseRedirect('/services')
 
@@ -105,6 +82,7 @@ def addQuoteRequest(request):
     if request.method == 'POST':
         quotes = QuoteRequest()
         service_id = request.POST['proj_type']
+        service_name = Services.objects.get(id = request.POST['proj_type'])
         quotes.project_type = Services.objects.get(id = request.POST['proj_type'])
         quotes.user_name = request.POST['username']
         quotes.user_email = request.POST['useremail']
@@ -112,19 +90,26 @@ def addQuoteRequest(request):
         quotes.budget = request.POST['proj_budget']
         quotes.final_price = 00
         quotes.save()
+        subject = 'New Quote Request has been recieved!'
+        message = 'A New Quote Request has been recieved for {}. \n Name: {}. \n Email: {}. \n Message: {}'.format( service_name.service_title, request.POST['username'], request.POST['useremail'], request.POST['description'])
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['me@aneeshbharath.com',]
+        send_mail( subject, message, email_from, recipient_list )
         messages.info(request, 'Your Quote has been submitted, We will contact you soon!')
     return HttpResponseRedirect('/services')
 
-#'weather_desc':
-def visitor_count(request):
-    print('not added')
-    if request.method == 'POST':
-        visitor = Vistor()
-        userip = request.POST['ip_address']
-        visitor.userip = userip[2:]
-        visitor.visit_date = timezone.datetime.now()
-        visitor.save()
-        print('added')
-    print('not added')
-    return HttpResponse('')
+
+
+
     
+'''
+        ip_toLocation = "https://ip-geo-location.p.rapidapi.com/ip/" + ip_address[2][3:]
+        querystring_ip = {"format":"json"}
+        headers_ip = {
+            'x-rapidapi-host': "ip-geo-location.p.rapidapi.com",
+            'x-rapidapi-key': "567ab5fe7bmsh396072837da1a2cp161316jsnb5774dba1784"
+            }
+        response_ip = requests.request("GET", ip_toLocation, headers=headers_ip, params=querystring_ip)
+        response_ip = response_ip.json()
+        location_now = response_ip['area']['name']
+'''
