@@ -38,7 +38,7 @@
         </div>
         </p>
         <p>{{ blog.body1|urlize }}</p><br>
-          <i class="w3-serif w3-large">Code</i>
+          <i class="w3-serif w3-large">{{blog.code_type1}}</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
               <i class="fa fa-quote-right w3-large"></i><br>
@@ -48,7 +48,7 @@
             </p>
           </div>
         <p>{{ blog.body2|urlize }}</p><br>
-          <i class="w3-serif w3-large">Code</i>
+          <i class="w3-serif w3-large">{{blog.code_type2}}</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
               <i class="fa fa-quote-right w3-large"></i><br>
@@ -58,7 +58,7 @@
             </p>
           </div>
         <p>{{ blog.body3|urlize }}</p><br>
-          <i class="w3-serif w3-large">Code</i>
+          <i class="w3-serif w3-large">{{blog.code_type3}}</i>
           <div class="w3-panel w3-leftbar">
             <p style="color:#1DA1F2;">
               <i class="fa fa-quote-right w3-large"></i><br>
@@ -67,6 +67,18 @@
                 </i>
             </p>
           </div>
+
+         <br>
+          Thoughts and ideas inspired from: <br> 
+          <div class="row">
+            <div class="col">
+              <a href="{{blog.extr_link1}}"  target="_blank">{{blog.extr_descript1}} <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <div class="col">
+              <a href="{{blog.extr_link2}}"  target="_blank">{{blog.extr_descript2}} <i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
 

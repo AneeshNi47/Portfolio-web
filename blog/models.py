@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Blog(models.Model):
+     Code = 'Code'
+     Quote = 'Quote'
+     Quote_or_code = ((Code,'Code'),(Quote, 'Quote'))
      title = models.CharField(max_length=200, default='')
      icon1 = models.ImageField(upload_to='image/', default='')
      icon1link = models.CharField(max_length=200, default='')
@@ -14,14 +17,21 @@ class Blog(models.Model):
      pub_date = models.DateTimeField()
      body1 = models.TextField(default='',blank=True)
      code1 = models.TextField(default='',blank=True)
+     code_type1 = models.CharField(max_length=10,choices=Quote_or_code,default=Code)
      body2 = models.TextField(default='',blank=True)
      code2 = models.TextField(default='',blank=True)
+     code_type2 = models.CharField(max_length=10,choices=Quote_or_code,default=Code)
      body3 = models.TextField(default='',blank=True)
      code3 = models.TextField(default='',blank=True)
+     code_type3 = models.CharField(max_length=10,choices=Quote_or_code,default=Code)
      image = models.ImageField(upload_to='image/')
      hashtags1 = models.CharField(max_length=200, default='')
      hashtags2 = models.CharField(max_length=200, default='')
      hashtags3 = models.CharField(max_length=200, default='')
+     extr_link1 = models.CharField(max_length=200, default='')
+     extr_descript1 = models.CharField(max_length=500, default='')
+     extr_link2 = models.CharField(max_length=200, default='')
+     extr_descript2 = models.CharField(max_length=500, default='')
      author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
      def __str__(self):
