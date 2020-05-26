@@ -69,17 +69,24 @@
           </div>
 
          <br>
-          Thoughts and ideas inspired from: <br> 
-          <div class="row">
-            <div class="col">
-              <a href="{{blog.extr_link1}}"  target="_blank">{{blog.extr_descript1}} <i class="fas fa-external-link-alt"></i></a>
-            </div>
-            <div class="col">
-              <a href="{{blog.extr_link2}}"  target="_blank">{{blog.extr_descript2}} <i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
           
       </div><!-- /.blog-post -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+        this.page.url = "http://www.aneeshbharath.com/blog/{{ blog.urltitle }}/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = {{blog.id}}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://aneeshportfolio.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                  
     </div><!-- /.blog-main -->
 
     <aside class="col-md-4 blog-sidebar">
@@ -91,6 +98,17 @@
   </div><!-- /.row -->
   <hr>
   <div class="row">
+    <div class="col">
+      Reference:
+        <div class="row">
+          <div class="col">
+            <a href="{{blog.extr_link1}}" data-toggle="tooltip" title="{{blog.extr_descript1}}"  target="_blank"><i class="fas fa-external-link-alt"></i></a>
+           </div>
+           <div class="col">
+              <a href="{{blog.extr_link2}}"  data-toggle="tooltip" title="{{blog.extr_descript2}}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </div>
     <div class="col">
       <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" 
               data-size="large"
