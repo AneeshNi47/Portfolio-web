@@ -32,18 +32,17 @@ ALLOWED_HOSTS = ['aneesh-bharath.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
+    'rest_framework',
     'contact.apps.ContactConfig',
     'accounts.apps.AccountsConfig',
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.messages',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.flatpages',
     'django.contrib.sites',
-    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'storages'
 ]
@@ -59,6 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-#'https://immense-falls-02774.herokuapp.com/db'
+# 'https://immense-falls-02774.herokuapp.com/db'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -90,9 +90,9 @@ DATABASES = {
         'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '5432',
-        'CONN_MAX_AGE' : 150
+        'CONN_MAX_AGE': 150
     }
-    
+
 }
 
 django_heroku.settings(locals())
@@ -149,10 +149,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 AWS_ACCESS_KEY_ID = 'AKIA3MOTR3Q2YF2B6RHX'
-AWS_SECRET_ACCESS_KEY =  '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'
+AWS_SECRET_ACCESS_KEY = '8iXWmujQrP6e87E5DvmBHafkHyuC4KQ1nbt866i4'
 AWS_STORAGE_BUCKET_NAME = 'django-portfolioaneesh'
 
-AWS_S3_REGION_NAME = 'ap-south-1' #change to your region
+AWS_S3_REGION_NAME = 'ap-south-1'  # change to your region
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 AWS_S3_FILE_OVERWRITE = False
