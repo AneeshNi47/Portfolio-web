@@ -1,6 +1,6 @@
-from jobs.models import Job
+from jobs.models import Job, ServicePoints
 from rest_framework import viewsets, permissions
-from jobs.serializers import jobSerializer
+from jobs.serializers import jobSerializer, servicePointsSerializer
 
 
 class JobViewSet(viewsets.ModelViewSet):
@@ -9,3 +9,11 @@ class JobViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = jobSerializer
+
+
+class ServicePointViewSet(viewsets.ModelViewSet):
+    queryset = ServicePoints.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = servicePointsSerializer
