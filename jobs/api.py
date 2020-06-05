@@ -6,7 +6,7 @@ from jobs.serializers import jobSerializer, servicePointsSerializer
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticatedOrReadOnly
     ]
     serializer_class = jobSerializer
 
@@ -14,6 +14,6 @@ class JobViewSet(viewsets.ModelViewSet):
 class ServicePointViewSet(viewsets.ModelViewSet):
     queryset = ServicePoints.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticatedOrReadOnly
     ]
     serializer_class = servicePointsSerializer
