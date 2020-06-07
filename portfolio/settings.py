@@ -120,7 +120,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'aneeshweb.portfolio@gmail.com'
-EMAIL_HOST_PASSWORD = 'news18@qwerty'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -148,9 +147,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-AWS_ACCESS_KEY_ID = 'AKIA3MOTR3Q2YF2B6RHX'
-AWS_SECRET_ACCESS_KEY = '8iXWmujQrP6e87E5DvmBHafkHyuC4KQ1nbt866i4'
-AWS_STORAGE_BUCKET_NAME = 'django-portfolioaneesh'
 
 AWS_S3_REGION_NAME = 'ap-south-1'  # change to your region
 AWS_S3_SIGNATURE_VERSION = 's3v4'
